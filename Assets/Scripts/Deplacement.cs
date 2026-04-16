@@ -10,7 +10,7 @@ public class Deplacement : MonoBehaviour
     Animator anim;
 
     public float vitesseDeplacement;
-    public float directionDeplacement;
+    float directionDeplacement;
 
     void OnEnable()
     {
