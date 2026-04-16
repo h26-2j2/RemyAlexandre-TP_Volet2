@@ -7,14 +7,12 @@ public class HoverBoutons : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     public GameObject visuelHover;
     public GameObject visuelActive;
 
-    Animator anim;
-    bool animHover = false;
+    public Animator anim; // Par l'inspecteur, je glisse l'enfant qui a l'Animator
 
 
     void Start()
     {
-        anim = GetComponentInChildren<Animator>();
-
+        
         // Caché au lancement du jeu
         if (visuelHover != null)
         {
@@ -46,9 +44,12 @@ public class HoverBoutons : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         if (visuelHover != null)
         {
             visuelHover.SetActive(false);
+        }
 
+        if (anim != null)
+        {
             anim.SetBool("animHover", false);
-            anim.CrossFade("Désactivé", 0.05f); // Interruption immédiate, + fluide que la transition de retour dans l'animator
+            anim.CrossFade("Désactivé", 0.05f); // Interruption immédiate, + fluide qu'une transition de retour dans l'animator
         }
     }
 
