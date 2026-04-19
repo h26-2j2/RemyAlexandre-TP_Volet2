@@ -3,12 +3,10 @@ using UnityEngine;
 public class SurCase : MonoBehaviour
 {
     Rigidbody2D rb;
-    Animator anim;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        anim = GetComponentInChildren<Animator>();
     }
 
 
@@ -17,9 +15,9 @@ public class SurCase : MonoBehaviour
 
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerEnter2D(Collider2D collision) // En RENTRANT dans le collider de la case
     {
-        CaseScript caseScript = collision.GetComponent<CaseScript>(); // Référence au components qui possèdent le script CaseScript
+        CaseScript caseScript = collision.GetComponent<CaseScript>(); // Référence au script CaseScript
 
         if (caseScript != null)
         {
@@ -27,7 +25,7 @@ public class SurCase : MonoBehaviour
         }
     }
 
-    void OnTriggerExit2D(Collider2D collision)
+    void OnTriggerExit2D(Collider2D collision) // En SORTANT du collider de la case
     {
         CaseScript caseScript = collision.GetComponent<CaseScript>();
 

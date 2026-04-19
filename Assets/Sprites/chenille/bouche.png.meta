@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: a4ab7f9fbe11f4d688a34c1fb0def2c4
+guid: f83dd5cea98ab4826adcc5ba4d7999ef
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1572080618215493826
-    second: pupilles vertes_0
-  - first:
-      213: 5592104204170536816
-    second: pupilles vertes_1
+      213: -5668878089972217903
+    second: bouche_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -116,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: pupilles vertes_0
+      name: bouche_0
       rect:
         serializedVersion: 2
-        x: 1181
-        y: 542
-        width: 141
-        height: 223
+        x: 1385
+        y: 483
+        width: 36
+        height: 52
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,30 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2c0d2073ef621d510800000000000000
-      internalID: 1572080618215493826
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pupilles vertes_1
-      rect:
-        serializedVersion: 2
-        x: 1414
-        y: 593
-        width: 113
-        height: 212
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 077ad8c35252b9d40800000000000000
-      internalID: 5592104204170536816
+      spriteID: 1d7063489691451b0800000000000000
+      internalID: -5668878089972217903
       vertices: []
       indices: 
       edges: []
@@ -173,8 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      pupilles vertes_0: 1572080618215493826
-      pupilles vertes_1: 5592104204170536816
+      bouche_0: -5668878089972217903
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

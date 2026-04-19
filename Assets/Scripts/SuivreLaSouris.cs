@@ -1,30 +1,31 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 public class SuivreLaSouris : MonoBehaviour
 {
     Rigidbody2D rb;
-    SpriteRenderer sr;
+    SpriteRenderer[] sprites;
     Animator anim;
 
     public float vitesseDeplacement; // 1f
     float directionX;
     bool enDeplacementX;
 
-  
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        sr = GetComponentInChildren<SpriteRenderer>();
+        sprites = GetComponentsInChildren<SpriteRenderer>();
         anim = GetComponentInChildren<Animator>();
     }
 
-   
+
     void Update()
     {
         if (Mouse.current.leftButton.isPressed) // Tant que le CLIC gauche reste APPUYÉ
         {
-            float zoneMorte = 1f; // Zone ajustable autour du centre du sujet, pour éviter les alternations trop rapides gauches-droites si la souris clique près de celui-ci
+            float zoneMorte = 1f; // Zone ajustable autour du centre du sujet, pour essayer d'éviter les alternations trop rapides gauches-droites si la souris clique près de celui-ci
 
             Vector2 PosSouris = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
             float diffX = PosSouris.x - transform.position.x; // Différence positive ou négative
@@ -49,13 +50,16 @@ public class SuivreLaSouris : MonoBehaviour
         }
 
 
-        if (directionX < 0)
+        foreach (SpriteRenderer sr in sprites) // Pour tous les sprites enfants
         {
-            sr.flipX = false;
-        }
-        else if (directionX > 0)
-        {
-            sr.flipX = true;
+            if (directionX < 0)
+            {
+                sr.flipX = true;
+            }
+            else if (directionX > 0)
+            {
+                sr.flipX = false;
+            }
         }
     }
 
