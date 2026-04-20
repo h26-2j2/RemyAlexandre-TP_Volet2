@@ -7,8 +7,12 @@ public class SuivreLaSouris : MonoBehaviour
     Rigidbody2D rb;
     SpriteRenderer[] sprites;
     Animator anim;
+    AudioSource audioSource;
+    public AudioClip sfxFlip;
+    float dernierFlip;
 
-    public float vitesseDeplacement; // 1f
+
+    public float vitesseDeplacement; // 3f
     float directionX;
     bool enDeplacementX;
 
@@ -18,6 +22,7 @@ public class SuivreLaSouris : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         sprites = GetComponentsInChildren<SpriteRenderer>();
         anim = GetComponentInChildren<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
 
 
@@ -43,10 +48,18 @@ public class SuivreLaSouris : MonoBehaviour
             }
 
             enDeplacementX = true;
+
+
+            float dir = Mathf.Sign(directionX); 
+            if (dir != 0 && dir != dernierFlip)
+                audioSource.PlayOneShot(sfxFlip); // Juste pour éviter le bug du son
+            dernierFlip = dir;
+            audioSource.enabled = true; // Le premier clic ne doit pas sonner comme un flip, donc j'ai eu l'idée d'activer après
         }
+
         else
         {
-            enDeplacementX = false;
+            enDeplacementX = false; //Aucun mouvement
         }
 
 
@@ -62,6 +75,8 @@ public class SuivreLaSouris : MonoBehaviour
             }
         }
     }
+
+
 
     void FixedUpdate()
     {

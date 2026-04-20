@@ -37,7 +37,7 @@ public class CaseScript : MonoBehaviour
 
 
 
-    public void ActiverCase() // Activée par OnTriggerEnter2D dans le script SurCase du joueur
+    public void ActiverCase() // Activée par OnTriggerEnter2D dans le script DansCollider du joueur
     {
         if (chiffre0 != null)
             chiffre0.transform.localScale = scaleInitial0 * chiffreScaling; //Chiffre + gros
@@ -53,7 +53,7 @@ public class CaseScript : MonoBehaviour
     }
 
 
-    public void DesactiverCase() // Activée par OnTriggerExit2D dans le script SurCase du joueur
+    public void DesactiverCase() // Activée par OnTriggerExit2D dans le script DansCollider du joueur
     {
         if (chiffre0 != null)
         {
