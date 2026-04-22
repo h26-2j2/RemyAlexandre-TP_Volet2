@@ -24,11 +24,11 @@ public class LeJeu : MonoBehaviour
     void Update()
     {
         if (!premierClickDetecte &&
-            SceneManager.GetActiveScene().name == "Mini-Jeu1" &&
+            SceneManager.GetActiveScene().name == "Mini-Jeu1" && // Au premier clic durant le premier mini-jeu
             Mouse.current != null &&
             Mouse.current.leftButton.wasPressedThisFrame)
         {
-            premierClickDetecte = true;
+            premierClickDetecte = true; // Il ne sera plus false
             audioSource.Stop(); // J'arrête le premier message
 
             if (!instructionsJouees)
@@ -37,7 +37,7 @@ public class LeJeu : MonoBehaviour
                 
                 audioSource.loop = false;
                 audioSource.clip = vocalInstructionsDebut;
-                audioSource.Play(); // On passe aux instructions
+                audioSource.Play(); // On passe aux instructions de la souris
             }
         }
     }

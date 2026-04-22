@@ -3,10 +3,14 @@ using UnityEngine;
 public class DansCollider : MonoBehaviour
 {
     Rigidbody2D rb;
+    AudioSource audioSource;
+    public AudioClip vocalMauvaiseDirectionDroite;
+    public AudioClip vocalMauvaiseDirectionGauche;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        audioSource = GetComponent<AudioSource>();
     }
 
 
@@ -32,6 +36,18 @@ public class DansCollider : MonoBehaviour
         if (caseScript != null)
         {
             caseScript.DesactiverCase();
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("LimiteDroite"))
+        {
+            audioSource.PlayOneShot(vocalMauvaiseDirectionDroite); // Je pense qu'on devrait aller à gauche
+        }
+        else if (collision.gameObject.CompareTag("LimiteGauche"))
+        {
+            audioSource.PlayOneShot(vocalMauvaiseDirectionGauche); // Je pense qu'on devrait aller à droite
         }
     }
 }

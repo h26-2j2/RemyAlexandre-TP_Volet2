@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
+using UnityEngine.EventSystems;
 
 public class SuivreLaSouris : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class SuivreLaSouris : MonoBehaviour
     public float vitesseDeplacement; // 3f
     float directionX;
     bool enDeplacementX;
+
+    public HoverBoutons hoverBoutons; // Pour empêcher le déplacement quand on hover des boutons
 
 
     void Start()
@@ -54,17 +57,18 @@ public class SuivreLaSouris : MonoBehaviour
 
             if (sonFlip == true)
             {
-               float dir = Mathf.Sign(directionX); 
-            if (dir != 0 && dir != dernierFlip)
-                audioSource.PlayOneShot(sfxFlip); // Juste pour éviter le bug du son
-            dernierFlip = dir; 
+                float dir = Mathf.Sign(directionX);
+                if (dir != 0 && dir != dernierFlip)
+                    audioSource.PlayOneShot(sfxFlip); // Juste pour éviter le bug du son
+                dernierFlip = dir;
             }
         }
-
+        
         else
         {
             enDeplacementX = false; //Aucun déplacement
         }
+
 
 
         foreach (SpriteRenderer sr in sprites) // Pour tous les sprites enfants
@@ -78,6 +82,12 @@ public class SuivreLaSouris : MonoBehaviour
                 sr.flipX = false;
             }
         }
+
+        if (hoverBoutons != null && hoverBoutons.hoverUI)
+        {
+            enDeplacementX = false; //Aucun déplacement si on survole le UI
+        }
+
     }
 
 

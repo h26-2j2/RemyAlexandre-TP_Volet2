@@ -5,10 +5,10 @@ using UnityEngine.SceneManagement;
 public class HoverBoutons : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     // Ce que j'veux afficher au :hover et :active
+    public bool hoverUI = false;
     public GameObject visuelHover;
     public GameObject visuelActive;
-
-    public Animator anim; // Par l'inspecteur, je glisse l'enfant qui a l'Animator
+    Animator anim;
 
     AudioSource audioSource;
     public AudioClip vocalHover;
@@ -17,6 +17,7 @@ public class HoverBoutons : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     void Start()
     {
+        anim = GetComponentInChildren<Animator>();
         audioSource = GetComponent<AudioSource>();
 
         // Caché au lancement du jeu
@@ -33,6 +34,8 @@ public class HoverBoutons : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     // Quand la souris HOVER sur le collider du parent
     public void OnPointerEnter(PointerEventData eventData)
     {
+        hoverUI = true;
+
         if (visuelHover != null)
         {
             visuelHover.SetActive(true);
@@ -40,7 +43,10 @@ public class HoverBoutons : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
         if (anim != null)
         {
-            anim.SetBool("animHover", true);
+            if (SceneManager.GetActiveScene().name == "Selecteur de jeux")
+            {
+                anim.SetBool("animHover", true);
+            }
         }
 
         if (audioSource != null && vocalHover != null)
@@ -53,6 +59,8 @@ public class HoverBoutons : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     // Quand la souris SORT du collider du parent
     public void OnPointerExit(PointerEventData eventData)
     {
+        hoverUI = false;
+
         if (visuelHover != null)
         {
             visuelHover.SetActive(false);
@@ -60,8 +68,11 @@ public class HoverBoutons : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
         if (anim != null)
         {
-            anim.SetBool("animHover", false);
-            anim.CrossFade("Désactivé", 0.05f); // Interruption immédiate, + fluide qu'une transition de retour dans l'animator
+            if (SceneManager.GetActiveScene().name == "Selecteur de jeux")
+            {
+                anim.SetBool("animHover", false);
+                anim.CrossFade("Désactivé", 0.05f); // Interruption immédiate, + fluide qu'une transition de retour dans l'animator
+            }
         }
 
         if (audioSource != null && audioSource.isPlaying)

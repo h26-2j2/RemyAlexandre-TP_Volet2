@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Case
   - Terre
+  - LimiteDroite
+  - LimiteGauche
   layers:
   - Default
   - TransparentFX
