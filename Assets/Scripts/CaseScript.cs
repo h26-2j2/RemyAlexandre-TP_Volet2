@@ -12,9 +12,14 @@ public class CaseScript : MonoBehaviour
     private Vector3 scaleInitial00;
     private Color couleurInitiale; // Couleur du globe
 
+    AudioSource audioSource;
+    public AudioClip vocalNombreCompter;
+
 
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
+
         if (chiffre0 != null)
         {
             scaleInitial0 = chiffre0.transform.localScale;
@@ -50,6 +55,7 @@ public class CaseScript : MonoBehaviour
         globe.color = new Color(1f, 1f, 1f, globe.color.a); // Couleur globe + claire
 
         //Debug.Log("J'ai atteint la case " + nombre);
+        audioSource.PlayOneShot(vocalNombreCompter); // On entend moi qui dit le nombre avec echo
     }
 
 

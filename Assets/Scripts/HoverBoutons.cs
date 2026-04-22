@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class HoverBoutons : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
@@ -9,10 +10,15 @@ public class HoverBoutons : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     public Animator anim; // Par l'inspecteur, je glisse l'enfant qui a l'Animator
 
+    AudioSource audioSource;
+    public AudioClip vocalHover;
+    public AudioClip vocalActive;
+
 
     void Start()
     {
-        
+        audioSource = GetComponent<AudioSource>();
+
         // Caché au lancement du jeu
         if (visuelHover != null)
         {
@@ -36,6 +42,12 @@ public class HoverBoutons : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         {
             anim.SetBool("animHover", true);
         }
+
+        if (audioSource != null && vocalHover != null)
+        {
+            audioSource.clip = vocalHover;
+            audioSource.Play();
+        }
     }
 
     // Quand la souris SORT du collider du parent
@@ -50,6 +62,14 @@ public class HoverBoutons : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         {
             anim.SetBool("animHover", false);
             anim.CrossFade("Désactivé", 0.05f); // Interruption immédiate, + fluide qu'une transition de retour dans l'animator
+        }
+
+        if (audioSource != null && audioSource.isPlaying)
+        {
+            if (SceneManager.GetActiveScene().name == "Selecteur de jeux")
+            {
+                audioSource.Stop(); // L'énoncé du titre a besoin d'arrêter sec, pas le reste
+            }
         }
     }
 
@@ -68,6 +88,12 @@ public class HoverBoutons : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         if (visuelActive != null)
         {
             visuelActive.SetActive(true);
+        }
+
+        if (audioSource != null && vocalActive != null)
+        {
+            audioSource.clip = vocalActive;
+            audioSource.Play();
         }
     }
 }

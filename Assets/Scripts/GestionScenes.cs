@@ -7,7 +7,7 @@ public class GestionScenes : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().name == "Menu")
         {
-            Invoke("LoadScene1", 0.5f);
+            Invoke("LoadScene1", 1f);
         }
         else if (SceneManager.GetActiveScene().name == "Selecteur de jeux")
         {

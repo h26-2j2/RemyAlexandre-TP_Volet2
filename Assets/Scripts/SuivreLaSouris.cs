@@ -10,6 +10,7 @@ public class SuivreLaSouris : MonoBehaviour
     AudioSource audioSource;
     public AudioClip sfxFlip;
     float dernierFlip;
+    bool sonFlip = false;
 
 
     public float vitesseDeplacement; // 3f
@@ -40,6 +41,8 @@ public class SuivreLaSouris : MonoBehaviour
                 if (diffX > 0) //Clic à droite 
                 {
                     directionX = 1; //Direction du sujet vers la droite
+
+                    sonFlip = true; // Le premier clic ne doit pas sonner comme un flip, alors je mets cette ligne ici
                 }
                 else if (diffX < 0) //Clic à gauche
                 {
@@ -47,19 +50,20 @@ public class SuivreLaSouris : MonoBehaviour
                 }
             }
 
-            enDeplacementX = true;
+            enDeplacementX = true; //Déplacement
 
-
-            float dir = Mathf.Sign(directionX); 
+            if (sonFlip == true)
+            {
+               float dir = Mathf.Sign(directionX); 
             if (dir != 0 && dir != dernierFlip)
                 audioSource.PlayOneShot(sfxFlip); // Juste pour éviter le bug du son
-            dernierFlip = dir;
-            audioSource.enabled = true; // Le premier clic ne doit pas sonner comme un flip, donc j'ai eu l'idée d'activer après
+            dernierFlip = dir; 
+            }
         }
 
         else
         {
-            enDeplacementX = false; //Aucun mouvement
+            enDeplacementX = false; //Aucun déplacement
         }
 
 
