@@ -341,9 +341,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 374b0f02a3d3c42cb9d97d3105f561b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  hoverUI: 0
   visuelHover: {fileID: 1688585801}
   visuelActive: {fileID: 1577495765}
-  anim: {fileID: 0}
   vocalHover: {fileID: 8300000, guid: 15124e0c1147d438fa0df0838e44e3d0, type: 3}
   vocalActive: {fileID: 8300000, guid: 95f1b58cff4b84b2ab4d98b7b469fa7c, type: 3}
 --- !u!82 &93080637
@@ -1681,12 +1681,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.CanvasScaler
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 2.2
   m_ReferenceResolution: {x: 500, y: 420}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.11
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
